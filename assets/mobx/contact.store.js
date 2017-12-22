@@ -1,9 +1,8 @@
-//import fetch from 'isomorphic-fetch';
 import superagent from 'superagent';
 import {observable, computed} from 'mobx';
  
-//const apiHost = 'http://localhost:3000/contacts';
-class Store {
+
+class ContactStore {
   @observable contacts = [];
 
   constructor() {
@@ -19,10 +18,9 @@ class Store {
                 if (error)
                     console.error(error);
                 else {
-                	console.log(results.text);
+                	console.log("Server response body: " + results.text);
                     const data = JSON.parse(results.text);
                     for(var i = 0; i < data.length; i++){
-                    	console.log(data);
                     	this.contacts.push(data[i]);
                     }
                 }
@@ -31,4 +29,4 @@ class Store {
 
 }
 
-export default Store;
+export default ContactStore;

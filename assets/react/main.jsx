@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Contact from './contact.jsx';
 import {observable} from 'mobx';
 import {observer} from 'mobx-react';
-import Store from './contacts.client.store.js';
+import ContactStore from '../mobx/contact.store.js';
 import moment from 'moment';
 
 @observer
@@ -32,19 +32,19 @@ class App extends React.Component{
         } else {
             components = this.state.data.map(function(item) {
                 return (
-                    <Contact id={item.id} contactJson={item} />
+                    <Contact key={item.id} json={item} />
                 );
             });
         }
 
         return (
-            <div>
+            <ul className="list-group">
                 {components}
-            </div>
+            </ul>
         );
     }
 };
 
-const store = new Store();
+const store = new ContactStore();
 
 ReactDOM.render(<App store={store} />, document.getElementById("container"));
