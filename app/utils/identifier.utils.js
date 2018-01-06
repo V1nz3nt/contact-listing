@@ -1,5 +1,11 @@
 'use strict'
 
+const uuidv4 = require('uuid/v4');
+
+exports.generateUUID = function(){
+    return uuidv4();
+}
+
 exports.generateHash = function(str) {
   var hash = 0, i, chr;
   if (str.length === 0) return hash;

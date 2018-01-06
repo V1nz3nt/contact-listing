@@ -1,21 +1,24 @@
 'use strict';
 
-var hashGenerator = require("../utils/identifier.utils");
-var contacts = [];//[{'name':'Mock data', 'number':'0123456789'}];
+var identifierGenerator = require("../utils/identifier.utils");
+var contacts = [];
+
+// TODO
+// - replace contacts mock with db
+// - do validation (e.g. duplicates check)
+// - implement deleteSet()
 
 exports.loadAll = function() {
 	return contacts;
 }
 
 exports.insertOne = function(contact){
-	//some kind of validation on contact
-	contact.id = hashGenerator.generateHash(contact.name);
+	contact.id = identifierGenerator.generateUUID(contact.name);
 	contacts.push(contact);
 	console.log("inserted contact with ID " + contact.id);
 }
 
 exports.updateOne = function(contact){
-	//some kind of validation on contact
 	for(var i = 0; i < contacts.length; i++){
 		let contactToUpdate = contacts[i];
 		if ( contact.id == contactToUpdate.id ){
@@ -35,5 +38,3 @@ exports.deleteOne = function(id){
 		}
 	}
 }
-
-//TODO delete

@@ -3,6 +3,10 @@
 var moment = require('moment');
 var contactsStore = require('../persistence/contacts.store');
 
+//TODO
+// - introduce X-Secret-Key header for security
+// - introduce payload validation
+
 exports.listAll = function(req, res) {
 	_logRequest("LIST ALL", req);
 	
@@ -12,7 +16,6 @@ exports.listAll = function(req, res) {
 exports.insert = function(req, res){
 	_logRequest("INSERT", req);
 
-	//some kind of validation
 	contactsStore.insertOne(req.body);
 	res.send( null );
 }
@@ -20,7 +23,6 @@ exports.insert = function(req, res){
 exports.update = function(req, res){
 	_logRequest("UPDATE", req);
 
-	//some kind of validation
 	contactsStore.updateOne(req.body);
 	res.send( null );
 }
