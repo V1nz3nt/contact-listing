@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
   var adviceController = require('../controller/advice.controller');
-  var listingController = require('../controller/listing.controller');
+  var listingController = require('../controller/contacts.controller');
 
   app.route('/contacts/all')
     .get(listingController.listAll)
